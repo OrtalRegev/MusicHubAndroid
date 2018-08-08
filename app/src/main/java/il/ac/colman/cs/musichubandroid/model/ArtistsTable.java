@@ -1,4 +1,4 @@
-package il.ac.colman.cs.musichubandroid.Model;
+package il.ac.colman.cs.musichubandroid.model;
 
 
 import com.google.firebase.database.DatabaseReference;
@@ -15,10 +15,8 @@ public class ArtistsTable {
     }
 
     public void addArtist(Artist artist){
-
         String id = databaseArtists.push().getKey();
-        String username = artist.getArtistUserName();
-        String genre = artist.getArtistGenre();
-
+        artist.setArtistId(id);
+        databaseArtists.child(id).setValue(artist);
     }
 }

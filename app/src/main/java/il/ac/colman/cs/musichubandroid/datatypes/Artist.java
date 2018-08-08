@@ -1,16 +1,15 @@
 package il.ac.colman.cs.musichubandroid.datatypes;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+import java.io.Serializable;
 
-public class Artist {
+import il.ac.colman.cs.musichubandroid.utils;
+
+public class Artist implements Serializable{
     private String artistId;
     private String artistUserName;
     private String artistGenre;
     private String artistEmail;
-    private byte[] artistHashedPassword;
+    private String artistHashedPassword;
 
     public Artist(){
 
@@ -21,12 +20,7 @@ public class Artist {
         this.artistUserName = artistUserName;
         this.artistGenre = artistGenre;
         this.artistEmail = artistEmail;
-        try{
-            MessageDigest hashAlgorithm = MessageDigest.getInstance("SHA-256");
-            artistHashedPassword = hashAlgorithm.digest(artistPassword.getBytes(StandardCharsets.UTF_8));
-        }catch (NoSuchAlgorithmException e){
-            e.printStackTrace();
-        }
+        artistHashedPassword = utils.sha256(artistPassword);
     }
 
     public String getArtistId() {
@@ -61,26 +55,15 @@ public class Artist {
         this.artistEmail = artistEmail;
     }
 
-    public byte[] getArtistHashedPassword() {
+    public String getArtistHashedPassword() {
         return artistHashedPassword;
     }
 
     public void setArtistHashedPassword(String password) {
-        try{
-            MessageDigest hashAlgorithm = MessageDigest.getInstance("SHA-256");
-            artistHashedPassword = hashAlgorithm.digest(password.getBytes(StandardCharsets.UTF_8));
-        }catch (NoSuchAlgorithmException e){
-            e.printStackTrace();
-        }
+        artistHashedPassword = utils.sha256(password);
     }
 
     public boolean validatePassword(String password){
-        try{
-            MessageDigest hashAlgorithm = MessageDigest.getInstance("SHA-256");
-            return Arrays.equals(hashAlgorithm.digest(password.getBytes(StandardCharsets.UTF_8)), artistHashedPassword);
-        }catch (NoSuchAlgorithmException e){
-            e.printStackTrace();
-            return false;
-        }
+        return  artistHashedPassword.equals(utils.sha256(password));
     }
 }
