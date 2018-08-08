@@ -19,4 +19,7 @@ public class ArtistsTable {
         artist.setArtistId(id);
         databaseArtists.child(id).setValue(artist);
     }
+    public Artist getArtist(){
+        return null;
+    }
 }
