@@ -92,12 +92,14 @@
         android:id="@+id/emailError"
         android:layout_width="128dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginLeft="28dp"
         android:text="Email is not valid"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="16sp"
         android:visibility="invisible"
         app:layout_constraintLeft_toRightOf="@+id/Email"
-        tools:layout_editor_absoluteY="97dp" />
+        android:layout_marginStart="28dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Email"
+        tools:layout_constraintBaseline_creator="1" />
 
 </android.support.constraint.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import il.ac.colman.cs.musichubandroid.R;
 
@@ -32,28 +33,40 @@ public class RegisterPageActivity extends AppCompatActivity {
 
     public boolean isPasswordValid()
     {
+        EditText pass=(EditText)findViewById(R.id.password);
+        EditText confirmPass=(EditText)findViewById(R.id.confirmPassword);
 
+       if(pass.getText().toString().equals(confirmPass.getText().toString()))
+       {
+           return true;
+       }
+        Toast.makeText(this, "the password and  the password confirm field do not match " + pass.getText() + " and "+confirmPass.getText(),Toast.LENGTH_LONG).show();
+        return  false;
     }
 
-    public Boolean isEmailValid(CharSequence target)
+    public Boolean isEmailValid()
     {
-        return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches();
-
-    }
-
-    public void emailErrorMassage(View view)
-    {
-        EditText EmailFieldContent=(EditText)findViewById(R.id.Email);
-        if(isEmailValid((CharSequence) EmailFieldContent))
+        EditText emailField = (EditText) findViewById(R.id.Email);
+        TextView emailErrorMessage=(TextView)findViewById(R.id.emailError);
+        if(!TextUtils.isEmpty(emailField.getText()) && Patterns.EMAIL_ADDRESS.matcher(emailField.getText()).matches())
         {
-            TextView emailErrorMassge= (TextView)findViewById(R.id.emailError);
-            emailErrorMassge.setVisibility(View.VISIBLE);
+            emailErrorMessage.setVisibility(View.INVISIBLE);// in case the massage already is visible we want to disable it;
 
+            return true;
         }
+        emailErrorMessage.setVisibility(View.VISIBLE);
+        return false;
     }
+
 
     public void register(View view)
     {
+        if (isEmailValid()&&isPasswordValid())
+        {
+            Toast.makeText(this, "Registered",Toast.LENGTH_LONG).show();
+        }
+
+
 
     }
 
