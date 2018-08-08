@@ -10,8 +10,8 @@
 
     <EditText
         android:id="@+id/userName"
-        android:layout_width="295dp"
-        android:layout_height="0dp"
+        android:layout_width="215dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="user name"
@@ -19,15 +19,17 @@
         android:visibility="visible"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/Email"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         android:layout_marginTop="29dp"
         tools:layout_constraintLeft_creator="1"
         android:layout_marginBottom="17dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/Email"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="38dp"
         android:ems="10"
@@ -51,9 +53,9 @@
         android:hint="password"
         android:inputType="textPassword"
         android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="@+id/Email"
-        app:layout_constraintRight_toRightOf="@+id/Email"
-        app:layout_constraintTop_toBottomOf="@+id/Email"
+        app:layout_constraintLeft_toLeftOf="@+id/email"
+        app:layout_constraintRight_toRightOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
@@ -80,7 +82,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:onClick="register"
         tools:layout_constraintBottom_creator="1"
         android:layout_marginStart="108dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,9 +98,9 @@
         android:textColor="@android:color/holo_red_dark"
         android:textSize="16sp"
         android:visibility="invisible"
-        app:layout_constraintLeft_toRightOf="@+id/Email"
+        app:layout_constraintLeft_toRightOf="@+id/email"
         android:layout_marginStart="28dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/Email"
+        app:layout_constraintBaseline_toBaselineOf="@+id/email"
         tools:layout_constraintBaseline_creator="1" />
 
 </android.support.constraint.ConstraintLayout>
