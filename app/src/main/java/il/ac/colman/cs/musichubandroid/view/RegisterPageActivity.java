@@ -37,7 +37,7 @@ public class RegisterPageActivity extends AppCompatActivity {
        {
            return true;
        }
-        Toast.makeText(this, "the password and  the password confirm field do not match " + pass.getText() + " and "+confirmPass.getText(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "please make sure that the password and  the password confirm field do match and the password length is at least 8 " + pass.getText() + " and "+confirmPass.getText(),Toast.LENGTH_LONG).show();
         return  false;
     }
 
@@ -56,8 +56,7 @@ public class RegisterPageActivity extends AppCompatActivity {
     }
 
 
-    public void HandlerRegister()
-    {
+    public void HandlerRegister() {
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,13 +65,17 @@ public class RegisterPageActivity extends AppCompatActivity {
                     EditText userName = (EditText) findViewById(R.id.userName);
                     EditText Password = (EditText) findViewById(R.id.password);
                     EditText Email = (EditText) findViewById(R.id.email);
-                    Artist artist = new Artist( userName.getText().toString(), "", Email.getText().toString(), Password.getText().toString());
+                    Artist artist = new Artist(userName.getText().toString(), "", Email.getText().toString(), Password.getText().toString());
                     ArtistsTable adder = new ArtistsTable();
-                    adder.addArtist(artist);
-                    finish();
-                }
-            }});
+                    if (adder.register(artist, Email.getText().toString(), Password.getText().toString())) {
+                        finish();
+                    } else {
+                        Toast.makeText(RegisterPageActivity.this, "Email is taken", Toast.LENGTH_SHORT).show();
+                    }
 
+                }
+            }
+        });
 
 
     }
