@@ -11,8 +11,6 @@ public class Artist implements Serializable{
     private String artistId;
     private String artistUserName;
     private String artistGenre;
-    private String artistEmail;
-    private String artistHashedPassword;
     private ArrayList<String> followingIds;
     private ArrayList<String> followersIds;
     private String profileImageName;
@@ -27,8 +25,6 @@ public class Artist implements Serializable{
     public Artist(String artistUserName, String artistGenre, String artistEmail, String artistPassword) {
         this.artistUserName = artistUserName;
         this.artistGenre = artistGenre;
-        this.artistEmail = artistEmail;
-        artistHashedPassword = utils.sha256(artistPassword);
         followersIds = new ArrayList<>();
         followingIds = new ArrayList<>();
         postsIds = new ArrayList<>();
@@ -56,22 +52,6 @@ public class Artist implements Serializable{
 
     public void setArtistGenre(String artistGenre) {
         this.artistGenre = artistGenre;
-    }
-
-    public String getArtistEmail() {
-        return artistEmail;
-    }
-
-    public void setArtistEmail(String artistEmail) {
-        this.artistEmail = artistEmail;
-    }
-
-    public String getArtistHashedPassword() {
-        return artistHashedPassword;
-    }
-
-    public void setArtistHashedPassword(String password) {
-        artistHashedPassword = utils.sha256(password);
     }
 
     public ArrayList<String> getFollowingIds() {
@@ -104,9 +84,5 @@ public class Artist implements Serializable{
 
     public void setPostsIds(ArrayList<String> postsIds) {
         this.postsIds = postsIds;
-    }
-
-    public boolean validatePassword(String password){
-        return  artistHashedPassword.equals(utils.sha256(password));
     }
 }
