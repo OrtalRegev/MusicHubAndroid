@@ -66,7 +66,7 @@ public class RegisterPageActivity extends AppCompatActivity {
                     EditText userName = (EditText) findViewById(R.id.userName);
                     EditText Password = (EditText) findViewById(R.id.password);
                     EditText Email = (EditText) findViewById(R.id.email);
-                    Artist artist = new Artist(null, userName.getText().toString(), "", Email.getText().toString(), Password.getText().toString());
+                    Artist artist = new Artist( userName.getText().toString(), "", Email.getText().toString(), Password.getText().toString());
                     ArtistsTable adder = new ArtistsTable();
                     adder.addArtist(artist);
                     finish();
