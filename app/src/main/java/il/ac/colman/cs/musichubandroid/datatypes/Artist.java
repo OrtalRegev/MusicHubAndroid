@@ -1,6 +1,7 @@
 package il.ac.colman.cs.musichubandroid.datatypes;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +15,13 @@ public class Artist implements Serializable{
     private String artistHashedPassword;
     private ArrayList<String> followingIds;
     private ArrayList<String> followersIds;
+    private String profileImageName;
+    private ArrayList<String> postsIds;
 
     public Artist(){
         followersIds = new ArrayList<>();
         followingIds = new ArrayList<>();
+        postsIds = new ArrayList<>();
     }
 
     public Artist(String artistUserName, String artistGenre, String artistEmail, String artistPassword) {
@@ -27,6 +31,7 @@ public class Artist implements Serializable{
         artistHashedPassword = utils.sha256(artistPassword);
         followersIds = new ArrayList<>();
         followingIds = new ArrayList<>();
+        postsIds = new ArrayList<>();
     }
 
     public String getArtistId() {
@@ -83,6 +88,22 @@ public class Artist implements Serializable{
 
     public void setFollowersIds(ArrayList<String> followersIds) {
         this.followersIds = followersIds;
+    }
+
+    public String getProfileImageName() {
+        return profileImageName;
+    }
+
+    public void setProfileImageName(String profileImageName) {
+        this.profileImageName = profileImageName;
+    }
+
+    public ArrayList<String> getPostsIds() {
+        return postsIds;
+    }
+
+    public void setPostsIds(ArrayList<String> postsIds) {
+        this.postsIds = postsIds;
     }
 
     public boolean validatePassword(String password){
