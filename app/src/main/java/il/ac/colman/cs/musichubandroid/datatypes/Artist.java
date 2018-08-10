@@ -22,7 +22,7 @@ public class Artist implements Serializable{
         postsIds = new ArrayList<>();
     }
 
-    public Artist(String artistUserName, String artistGenre, String artistEmail, String artistPassword) {
+    public Artist(String artistUserName, String artistGenre) {
         this.artistUserName = artistUserName;
         this.artistGenre = artistGenre;
         followersIds = new ArrayList<>();
