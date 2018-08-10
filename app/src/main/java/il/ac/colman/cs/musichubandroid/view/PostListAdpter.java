@@ -26,6 +26,14 @@ public class PostListAdpter extends ArrayAdapter<Post>{
         nResource=resource;
     }
 
+    static class ViewHolder {
+        TextView descripton;
+        ImageView profile;
+        TextView hypes;
+        Button playButton;
+        Button hype;
+    }
+
 
     @NonNull
     @Override
@@ -39,12 +47,19 @@ public class PostListAdpter extends ArrayAdapter<Post>{
         Post post = new Post(postId, artistId, postDescription, songName, hypes);
         LayoutInflater inflater = LayoutInflater.from(nContext);
         convertView = inflater.inflate(nResource, parent, false);
-        ImageView profile = (ImageView) convertView.findViewById(R.id.profilePic);
-        TextView sonngDicript = (TextView) convertView.findViewById(R.id.artistAndSongName);
-        Button playButton = (Button) convertView.findViewById(R.id.playButton);
-        Button hype = (Button) convertView.findViewById(R.id.hypeButton);
-        profile.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
-        sonngDicript.setText(postDescription+"&"+artistId+"&"+postId);
+
+        ViewHolder holder = new ViewHolder();
+
+
+
+        convertView.setTag(holder);
+
+        holder.profile = (ImageView) convertView.findViewById(R.id.profilePic);
+        holder.descripton = (TextView) convertView.findViewById(R.id.description);
+        holder.playButton = (Button) convertView.findViewById(R.id.playButton);
+        holder.hype = (Button) convertView.findViewById(R.id.hypeButton);
+        holder.profile.setImageResource(R.drawable.common_google_signin_btn_icon_dark);
+        holder.hypes.setText("7");
         return convertView;
     }
 

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import il.ac.colman.cs.musichubandroid.R;
 import il.ac.colman.cs.musichubandroid.datatypes.Artist;
 import il.ac.colman.cs.musichubandroid.model.ArtistsTable;
@@ -35,7 +37,6 @@ public class LoginPageActivity extends AppCompatActivity {
         handlerLogin();
     }
 
-
     public void handleRegister()
     {
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -52,14 +53,7 @@ public class LoginPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                ArtistsTable artistsTable= new ArtistsTable();
-
-               if(artistsTable.login(email.getText().toString(),passsword.getText().toString()))
-               {
-                   startActivity(new Intent(LoginPageActivity.this,FeedActivity.class));
-               }else {
-                   Toast.makeText(LoginPageActivity.this, "Your Password or Email are incorrect", Toast.LENGTH_SHORT).show();
-               }
-
+               artistsTable.login(email.getText().toString(),passsword.getText().toString());
             }
         });
     }
