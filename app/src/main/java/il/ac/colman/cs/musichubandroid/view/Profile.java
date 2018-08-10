@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -37,11 +38,11 @@ public class Profile extends AppCompatActivity {
     StorageReference mStorage;
     FirebaseAuth auth;
     String userId;
+    File picFile;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
-        userId = auth.getCurrentUser().getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
         addPost= (Button)findViewById(R.id.addPost);
         profilePic=(ImageView)findViewById(R.id.profilePic);
@@ -51,22 +52,22 @@ public class Profile extends AppCompatActivity {
                 openGallery();
             }
         });
+        auth = FirebaseAuth.getInstance();
+        userId = auth.getCurrentUser().getUid();
         StorageReference pic = mStorage.child("pictures").child(userId);
-        try{
-            final File picFile = File.createTempFile("images", "jpg");
-            pic.getFile(picFile).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
-                    if(task.isSuccessful()){
-                        profilePic.setImageURI(Uri.fromFile(picFile));
-                    }
-                }
-            });
+        try {
+            picFile = File.createTempFile("images", null, this.getCacheDir());
         }catch (Exception e){
 
         }
-
-
+        pic.getFile(picFile).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
+                if(task.isSuccessful()){
+                    profilePic.setImageURI(Uri.fromFile(picFile));
+                }
+            }
+        });
     }
     public void openGallery()
     {
