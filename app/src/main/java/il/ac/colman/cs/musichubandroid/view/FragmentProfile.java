@@ -1,15 +1,15 @@
 package il.ac.colman.cs.musichubandroid.view;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -26,11 +26,13 @@ import java.io.File;
 
 import il.ac.colman.cs.musichubandroid.R;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by regevor on 10/08/2018.
  */
 
-public class Profile extends AppCompatActivity {
+public class FragmentProfile extends Fragment {
     Button addPost;
     private static final  int PICK_IMAGE=100;
     Uri imageUri;
@@ -39,13 +41,19 @@ public class Profile extends AppCompatActivity {
     FirebaseAuth auth;
     String userId;
     File picFile;
+
+    public FragmentProfile()
+    {
+
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        userId = auth.getCurrentUser().getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
-        addPost= (Button)findViewById(R.id.addPost);
-        profilePic=(ImageView)findViewById(R.id.profilePic);
+        addPost= (Button)container.findViewById(R.id.addPost);
+        profilePic=(ImageView)container.findViewById(R.id.profilePic);
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +64,7 @@ public class Profile extends AppCompatActivity {
         userId = auth.getCurrentUser().getUid();
         StorageReference pic = mStorage.child("pictures").child(userId);
         try {
-            picFile = File.createTempFile("images", null, this.getCacheDir());
+            picFile = File.createTempFile("images", null, container.getContext().getCacheDir());
         }catch (Exception e){
 
         }
@@ -68,7 +76,12 @@ public class Profile extends AppCompatActivity {
                 }
             }
         });
+        return inflater.inflate(R.layout.fragment_profile,container,false);
     }
+
+    //super.onCreate(savedInstanceState);
+
+
     public void openGallery()
     {
         Intent gallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
@@ -76,7 +89,7 @@ public class Profile extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==PICK_IMAGE && resultCode==RESULT_OK)
         {
@@ -88,7 +101,7 @@ public class Profile extends AppCompatActivity {
                     if(task.isSuccessful()){
                         profilePic.setImageURI(imageUri);
                     }else{
-                        Toast.makeText(Profile.this, "Failed to upload please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Failed to upload please try again", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

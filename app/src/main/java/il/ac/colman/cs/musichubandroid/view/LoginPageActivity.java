@@ -15,9 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import il.ac.colman.cs.musichubandroid.MainActivity;
 import il.ac.colman.cs.musichubandroid.R;
-import il.ac.colman.cs.musichubandroid.datatypes.Artist;
-import il.ac.colman.cs.musichubandroid.model.ArtistsTable;
 
 /**
  * Created by ostrovskyav on 08/08/2018.
@@ -62,7 +61,7 @@ public class LoginPageActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            startActivity(new Intent(LoginPageActivity.this, FeedActivity.class));
+                            startActivity(new Intent(LoginPageActivity.this, MainActivity.class));
                         }else{
                             Toast.makeText(LoginPageActivity.this, "Email or Password are incorrect", Toast.LENGTH_SHORT).show();
                         }
