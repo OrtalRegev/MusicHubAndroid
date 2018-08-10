@@ -91,9 +91,10 @@ public class RegisterPageActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterPageActivity.this, "Failed to create user", Toast.LENGTH_SHORT).show();
                             }
                         }
-                    };
+                    });
                 }
-                                                                                                                                                                                                                                                                 
+            }
+        });
     }
 
 }
