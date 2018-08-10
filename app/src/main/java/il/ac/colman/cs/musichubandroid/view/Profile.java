@@ -5,11 +5,23 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
 
 import il.ac.colman.cs.musichubandroid.R;
 
@@ -22,10 +34,15 @@ public class Profile extends AppCompatActivity {
     private static final  int PICK_IMAGE=100;
     Uri imageUri;
     ImageView profilePic;
+    StorageReference mStorage;
+    FirebaseAuth auth;
+    String userId;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+        userId = auth.getCurrentUser().getUid();
+        mStorage = FirebaseStorage.getInstance().getReference();
         addPost= (Button)findViewById(R.id.addPost);
         profilePic=(ImageView)findViewById(R.id.profilePic);
         profilePic.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +51,22 @@ public class Profile extends AppCompatActivity {
                 openGallery();
             }
         });
+        StorageReference pic = mStorage.child("pictures").child(userId);
+        try{
+            final File picFile = File.createTempFile("images", "jpg");
+            pic.getFile(picFile).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
+                    if(task.isSuccessful()){
+                        profilePic.setImageURI(Uri.fromFile(picFile));
+                    }
+                }
+            });
+        }catch (Exception e){
+
+        }
+
+
     }
     public void openGallery()
     {
@@ -47,7 +80,18 @@ public class Profile extends AppCompatActivity {
         if(requestCode==PICK_IMAGE && resultCode==RESULT_OK)
         {
             imageUri=data.getData();
-            profilePic.setImageURI(imageUri);
+            StorageReference filepath = mStorage.child("pictures").child(userId);
+            filepath.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if(task.isSuccessful()){
+                        profilePic.setImageURI(imageUri);
+                    }else{
+                        Toast.makeText(Profile.this, "Failed to upload please try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
 
         }
     }
