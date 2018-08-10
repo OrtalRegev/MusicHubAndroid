@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="137dp"
+        android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_weight="40"
         android:text="description"
@@ -42,9 +42,10 @@
             android:layout_height="40dp"
             android:text="hype"/>
         <TextView
+            android:id="@+id/hypeCount"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="boob"
+            android:text="hype amount"
             />
     </LinearLayout>
 
