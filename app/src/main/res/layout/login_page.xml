@@ -15,7 +15,7 @@
         android:inputType="textPersonName"
         android:hint="Password"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintBottom_creator="1"
@@ -53,13 +53,12 @@
         tools:layout_constraintRight_creator="1" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
         android:text="login"
         android:visibility="visible"
-        android:onClick="onClickLoginButton"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintLeft_toLeftOf="@+id/registerButton"
         app:layout_constraintRight_toRightOf="@+id/registerButton"
