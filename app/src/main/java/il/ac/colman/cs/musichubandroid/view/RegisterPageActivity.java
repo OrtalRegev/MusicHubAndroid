@@ -69,9 +69,7 @@ public class RegisterPageActivity extends AppCompatActivity {
         return false;
     }
 
-
-    public void HandlerRegister()
-    {
+    public void HandlerRegister() {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,9 +91,9 @@ public class RegisterPageActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterPageActivity.this, "Failed to create user", Toast.LENGTH_SHORT).show();
                             }
                         }
-                    });
+                    };
                 }
-            }});
+                                                                                                                                                                                                                                                                 
     }
 
 }
