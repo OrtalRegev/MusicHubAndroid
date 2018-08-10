@@ -48,18 +48,8 @@ public class ArtistsTable {
         });
         return success;
     }
-    public boolean login(String email, String password){
-        currentArtist = null;
-        success = false;
-         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    success = true;
-                }
-            }
-        });
-        return success;
+    public void login(String email, String password){
+        mAuth.signInWithEmailAndPassword(email, password);
     }
     public void getArtistData(){
         databaseArtists.addValueEventListener(new ValueEventListener() {
