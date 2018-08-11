@@ -7,21 +7,25 @@ import android.media.MediaPlayer;
  */
 
 public class SingeltonSongPlaying {
-    SingeltonSongPlaying singeltonSongPlaying=null;
+    static SingeltonSongPlaying singeltonSongPlaying=null;
     MediaPlayer songPlayer;
 
     private SingeltonSongPlaying()
     {
 
+
     }
 
     public void setSongPlayer(MediaPlayer songPlayer) {
-        songPlayer.stop();
+        if (songPlayer.isPlaying()) {songPlayer.stop();}
         this.songPlayer = songPlayer;
+    }
+    public void playSong()
+    {
         songPlayer.start();
     }
 
-    public SingeltonSongPlaying getInstence() {
+    static public SingeltonSongPlaying getInstence() {
         if (singeltonSongPlaying == null)
         {
             singeltonSongPlaying = new SingeltonSongPlaying();

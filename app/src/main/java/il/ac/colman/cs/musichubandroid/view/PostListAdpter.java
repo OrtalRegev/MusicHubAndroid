@@ -1,6 +1,7 @@
 package il.ac.colman.cs.musichubandroid.view;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.AnimatorRes;
 import android.support.annotation.NonNull;
@@ -34,6 +35,7 @@ public class PostListAdpter extends ArrayAdapter<Post>{
     private int nResource;
     private int lastPosition =-1;
     private File picFile;
+    private File songFile;
     ViewHolder holder;
     SingeltonSongPlaying singeltonSongPlaying;
     public PostListAdpter(@NonNull Context context, int resource, @NonNull ArrayList<Post> objects) {
@@ -56,7 +58,7 @@ public class PostListAdpter extends ArrayAdapter<Post>{
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String postId = getItem(position).getPostId();
-        String artistId = getItem(position).getArtistId();
+        final String artistId = getItem(position).getArtistId();
         String postDescription = getItem(position).getPostDescription();
         int hypes = getItem(position).getPostHypes();
 
@@ -107,12 +109,27 @@ public class PostListAdpter extends ArrayAdapter<Post>{
         });
         holder.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(final View view){
+                singeltonSongPlaying= SingeltonSongPlaying.getInstence();
+
+                final StorageReference song = FirebaseStorage.getInstance().getReference().child("songs").child(artistId);
+                try {
+                    songFile = File.createTempFile("songs", null, view.getContext().getCacheDir());
+                }catch (Exception e){
+
+                }
+                song.getFile(songFile).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
+                        if(task.isSuccessful()){
+                            singeltonSongPlaying.setSongPlayer(MediaPlayer.create(view.getContext(), Uri.fromFile(songFile)));
+                            singeltonSongPlaying.playSong();
+                        }
+                    }
+                });
 
             }
         });
-
-
 
         return convertView;
     }
