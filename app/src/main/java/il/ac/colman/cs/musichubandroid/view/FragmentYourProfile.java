@@ -32,7 +32,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by regevor on 10/08/2018.
  */
 
-public class FragmentProfile extends Fragment {
+public class FragmentYourProfile extends Fragment {
     Button addPost;
     private static final  int PICK_IMAGE=100;
     Uri imageUri;
@@ -42,7 +42,7 @@ public class FragmentProfile extends Fragment {
     String userId;
     File picFile;
 
-    public FragmentProfile()
+    public FragmentYourProfile()
     {
 
     }

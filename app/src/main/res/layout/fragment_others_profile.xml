@@ -9,24 +9,24 @@
         android:layout_height="match_parent">
 
 
-        <Button
-            android:id="@+id/addPost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="281dp"
-            android:layout_y="414dp"
-            android:background="@drawable/round_button"
-            android:text="+"
-            android:textSize="36sp"
-            android:visibility="visible" />
-
         <ImageView
-            android:id="@+id/profilePic"
-            android:layout_width="match_parent"
+            android:id="@+id/OthersProfile"
+            android:layout_width="392dp"
             android:layout_height="195dp"
             android:layout_x="4dp"
             android:layout_y="1dp"
             android:visibility="visible"
             app:srcCompat="@drawable/round_button" />
+
+        <Button
+            android:id="@+id/addPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="132dp"
+            android:layout_y="283dp"
+            android:background="@drawable/round_button"
+            android:text="follow"
+            android:textSize="36sp"
+            android:visibility="visible" />
     </AbsoluteLayout>
 </FrameLayout>

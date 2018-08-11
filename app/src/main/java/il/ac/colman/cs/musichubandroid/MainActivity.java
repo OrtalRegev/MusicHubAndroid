@@ -10,13 +10,13 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import il.ac.colman.cs.musichubandroid.view.FragmentFeed;
-import il.ac.colman.cs.musichubandroid.view.FragmentProfile;
+import il.ac.colman.cs.musichubandroid.view.FragmentYourProfile;
 import il.ac.colman.cs.musichubandroid.view.FragmentSearch;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     FrameLayout mMainFrame;
-    FragmentProfile fragmentProfile;
+    FragmentYourProfile fragmentYourProfile;
     FragmentFeed fragmentFeed;
     FragmentSearch fragmentSearch;
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView=(BottomNavigationView)findViewById(R.id.mainNav);
 
         fragmentFeed = new FragmentFeed();
-        fragmentProfile= new FragmentProfile();
+        fragmentYourProfile = new FragmentYourProfile();
         fragmentSearch= new FragmentSearch();
         setFragment(fragmentFeed);
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.navMyProfile:
-                        setFragment(fragmentProfile);
+                        setFragment(fragmentYourProfile);
 
                         return true;
                     case R.id.navSearch:
