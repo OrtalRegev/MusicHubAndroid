@@ -21,7 +21,6 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.File;
 
 import il.ac.colman.cs.musichubandroid.R;
@@ -50,10 +49,17 @@ public class FragmentProfile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.fragment_profile,container,false);
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         userId = auth.getCurrentUser().getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
-        addPost= (Button)container.findViewById(R.id.addPost);
-        profilePic=(ImageView)container.findViewById(R.id.profilePic);
+        addPost= (Button)view.findViewById(R.id.addPost);
+        profilePic=(ImageView)view.findViewById(R.id.profilePic);
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +70,7 @@ public class FragmentProfile extends Fragment {
         userId = auth.getCurrentUser().getUid();
         StorageReference pic = mStorage.child("pictures").child(userId);
         try {
-            picFile = File.createTempFile("images", null, container.getContext().getCacheDir());
+            picFile = File.createTempFile("images", null, view.getContext().getCacheDir());
         }catch (Exception e){
 
         }
@@ -76,11 +82,8 @@ public class FragmentProfile extends Fragment {
                 }
             }
         });
-        return inflater.inflate(R.layout.fragment_profile,container,false);
+
     }
-
-    //super.onCreate(savedInstanceState);
-
 
     public void openGallery()
     {

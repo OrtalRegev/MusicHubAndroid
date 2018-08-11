@@ -2,13 +2,14 @@ package il.ac.colman.cs.musichubandroid.view;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import java.util.ArrayList;
 
 import il.ac.colman.cs.musichubandroid.R;
@@ -25,7 +26,12 @@ public class FragmentFeedActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        theFeed=container.findViewById(R.id.feed);
+        return inflater.inflate(R.layout.fragment_main_feed_page,container,false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        theFeed=(ListView) view.findViewById(R.id.feed);
         Post post1 = new Post("post1", "1", "new song", "song number1", 0);
         Post post2 = new Post("post2", "1", "new song2", "song number2", 0);
         Post post3 = new Post("post3", "1", "new song3", "song number3", 0);
@@ -57,9 +63,8 @@ public class FragmentFeedActivity extends Fragment {
         postList.add(post13);
         postList.add(post14);
 
-        PostListAdpter adapter= new PostListAdpter(container.getContext(),R.layout.post_adapter,postList);
+        PostListAdpter adapter= new PostListAdpter(view.getContext(),R.layout.post_adapter,postList);
         theFeed.setAdapter(adapter);
-        return inflater.inflate(R.layout.fragment_main_feed_page,container,false);
     }
 }
 
