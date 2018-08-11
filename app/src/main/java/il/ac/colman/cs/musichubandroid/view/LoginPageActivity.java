@@ -16,8 +16,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import il.ac.colman.cs.musichubandroid.R;
-import il.ac.colman.cs.musichubandroid.datatypes.Artist;
-import il.ac.colman.cs.musichubandroid.model.ArtistsTable;
 
 /**
  * Created by ostrovskyav on 08/08/2018.
