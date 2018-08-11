@@ -19,7 +19,7 @@ public class FragmentSearch extends Fragment {
     Button searchButton;
     EditText searchText;
 
-    public  Fragment()
+    public FragmentSearch()
     {
 
     }
