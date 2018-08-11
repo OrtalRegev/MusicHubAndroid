@@ -27,6 +27,7 @@ import java.util.List;
 
 import il.ac.colman.cs.musichubandroid.R;
 import il.ac.colman.cs.musichubandroid.datatypes.Post;
+import il.ac.colman.cs.musichubandroid.model.SingeltonSongPlaying;
 
 public class PostListAdpter extends ArrayAdapter<Post>{
     private  Context nContext;
@@ -34,6 +35,7 @@ public class PostListAdpter extends ArrayAdapter<Post>{
     private int lastPosition =-1;
     private File picFile;
     ViewHolder holder;
+    SingeltonSongPlaying singeltonSongPlaying;
     public PostListAdpter(@NonNull Context context, int resource, @NonNull ArrayList<Post> objects) {
         super(context, resource, objects);
         nContext=context;
@@ -101,6 +103,12 @@ public class PostListAdpter extends ArrayAdapter<Post>{
                 if(task.isSuccessful()){
                     holder.profile.setImageURI(Uri.fromFile(picFile));
                 }
+            }
+        });
+        holder.playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+
             }
         });
 
