@@ -9,14 +9,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import il.ac.colman.cs.musichubandroid.view.FragmentFeedActivity;
+import il.ac.colman.cs.musichubandroid.view.FragmentFeed;
 import il.ac.colman.cs.musichubandroid.view.FragmentProfile;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     FrameLayout mMainFrame;
     FragmentProfile fragmentProfile;
-    FragmentFeedActivity fragmentFeedActivity;
+    FragmentFeed fragmentFeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         mMainFrame=(FrameLayout)findViewById(R.id.mainFrame);
         navigationView=(BottomNavigationView)findViewById(R.id.mainNav);
 
-        fragmentFeedActivity= new FragmentFeedActivity();
+        fragmentFeed = new FragmentFeed();
         fragmentProfile= new FragmentProfile();
-        setFragment(fragmentFeedActivity);
+        setFragment(fragmentFeed);
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId())
                 {
                     case  R.id.navHome:
-                        setFragment(fragmentFeedActivity);
+                        setFragment(fragmentFeed);
                         return true;
 
                     case R.id.navMyProfile:

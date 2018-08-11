@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import il.ac.colman.cs.musichubandroid.R;
 import il.ac.colman.cs.musichubandroid.datatypes.Post;
 
-public class FragmentFeedActivity extends Fragment {
+public class FragmentFeed extends Fragment {
     ListView theFeed;
 
-     public FragmentFeedActivity()
+     public FragmentFeed()
      {
 
      }

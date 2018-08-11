@@ -1,5 +1,6 @@
 package il.ac.colman.cs.musichubandroid.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,7 +56,7 @@ public class FragmentProfile extends Fragment {
 
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -65,6 +66,14 @@ public class FragmentProfile extends Fragment {
             @Override
             public void onClick(View v) {
                 openGallery();
+            }
+        });
+        addPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getActivity(),PostUploaderActivity.class));
+                ((Activity) getActivity()).overridePendingTransition(0,0);
             }
         });
         userId = auth.getCurrentUser().getUid();
