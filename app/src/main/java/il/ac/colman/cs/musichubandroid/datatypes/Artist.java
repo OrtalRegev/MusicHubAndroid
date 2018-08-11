@@ -1,16 +1,13 @@
 package il.ac.colman.cs.musichubandroid.datatypes;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-
-import il.ac.colman.cs.musichubandroid.utils;
 
 public class Artist implements Serializable{
     private String artistId;
     private String artistUserName;
     private String artistGenre;
+    private String email;
     private ArrayList<String> followingIds;
     private ArrayList<String> followersIds;
     private String profileImageName;
@@ -22,9 +19,10 @@ public class Artist implements Serializable{
         postsIds = new ArrayList<>();
     }
 
-    public Artist(String artistUserName, String artistGenre) {
+    public Artist(String artistUserName, String artistGenre, String email){
         this.artistUserName = artistUserName;
         this.artistGenre = artistGenre;
+        this.email = email;
         followersIds = new ArrayList<>();
         followingIds = new ArrayList<>();
         postsIds = new ArrayList<>();
@@ -52,6 +50,14 @@ public class Artist implements Serializable{
 
     public void setArtistGenre(String artistGenre) {
         this.artistGenre = artistGenre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public ArrayList<String> getFollowingIds() {

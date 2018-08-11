@@ -46,12 +46,11 @@ public class PostListAdpter extends ArrayAdapter<Post>{
         String postId = getItem(position).getPostId();
         String artistId = getItem(position).getArtistId();
         String postDescription = getItem(position).getPostDescription();
-        String songName = getItem(position).getPostSongName();
         int hypes = getItem(position).getPostHypes();
         final  View result;
         ViewHolder holder = new ViewHolder();
 
-        Post post = new Post(postId, artistId, postDescription, songName, hypes);
+        Post post = new Post(postId, artistId, postDescription, hypes);
         LayoutInflater inflater = LayoutInflater.from(nContext);
         convertView = inflater.inflate(nResource, parent, false);
 
@@ -74,14 +73,6 @@ public class PostListAdpter extends ArrayAdapter<Post>{
 
         return convertView;
     }
-
-
-
-
-
-
-
-
 
     }
 

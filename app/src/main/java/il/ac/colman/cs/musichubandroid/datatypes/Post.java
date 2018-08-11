@@ -4,14 +4,12 @@ public class Post {
     String postId;
     String artistId;
     String postDescription;
-    String postSongName;
     int postHypes;
 
-    public Post(String postId, String artistId, String postDescription, String postSongName, int postHypes) {
+    public Post(String postId, String artistId, String postDescription, int postHypes) {
         this.postId = postId;
         this.artistId = artistId;
         this.postDescription = postDescription;
-        this.postSongName = postSongName;
         this.postHypes = postHypes;
     }
 
@@ -37,14 +35,6 @@ public class Post {
 
     public void setPostDescription(String postDescription) {
         this.postDescription = postDescription;
-    }
-
-    public String getPostSongName() {
-        return postSongName;
-    }
-
-    public void setPostSongName(String postSongName) {
-        this.postSongName = postSongName;
     }
 
     public int getPostHypes() {
