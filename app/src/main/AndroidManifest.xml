@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.Profile">
+        <activity android:name=".view.LoginPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,9 +21,12 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".view.FeedActivity"
-            android:label="@string/app_name"
-            >
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".view.PostUploaderActivity"
+            android:label="@string/app_name" >
         </activity>
 
     </application>

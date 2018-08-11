@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/discriptionBox"
+        android:layout_width="match_parent"
+        android:layout_height="183dp"
+        android:layout_x="0dp"
+        android:layout_y="168dp"
+        android:hint="please discribe your song"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/songPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="73dp"
+        android:layout_y="52dp"
+        android:text="click here to choose a song" />
+
+    <Button
+        android:id="@+id/uploadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="144dp"
+        android:layout_y="351dp"
+        android:text="upload" />
+
+    <TextView
+        android:id="@+id/songName"
+        android:layout_width="270dp"
+        android:layout_height="33dp"
+        android:layout_x="32dp"
+        android:layout_y="113dp"
+        android:text="song name" />
+</AbsoluteLayout>
