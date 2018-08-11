@@ -11,12 +11,14 @@ import android.widget.FrameLayout;
 
 import il.ac.colman.cs.musichubandroid.view.FragmentFeed;
 import il.ac.colman.cs.musichubandroid.view.FragmentProfile;
+import il.ac.colman.cs.musichubandroid.view.FragmentSearch;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     FrameLayout mMainFrame;
     FragmentProfile fragmentProfile;
     FragmentFeed fragmentFeed;
+    FragmentSearch fragmentSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentFeed = new FragmentFeed();
         fragmentProfile= new FragmentProfile();
+        fragmentSearch= new FragmentSearch();
         setFragment(fragmentFeed);
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
                         setFragment(fragmentProfile);
 
                         return true;
-
+                    case R.id.navSearch:
+                        setFragment(fragmentSearch);
+                        return true;
                     default:
                         return false;
                 }
