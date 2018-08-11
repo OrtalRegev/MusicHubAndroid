@@ -56,6 +56,7 @@ public class FragmentProfile extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         mStorage = FirebaseStorage.getInstance().getReference();
         addPost= (Button)view.findViewById(R.id.addPost);
@@ -66,7 +67,6 @@ public class FragmentProfile extends Fragment {
                 openGallery();
             }
         });
-        auth = FirebaseAuth.getInstance();
         userId = auth.getCurrentUser().getUid();
         StorageReference pic = mStorage.child("pictures").child(userId);
         try {
