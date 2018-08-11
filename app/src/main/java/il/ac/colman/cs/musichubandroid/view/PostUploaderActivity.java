@@ -105,6 +105,7 @@ public class PostUploaderActivity extends AppCompatActivity{
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
                         Post post = new Post(songUri.toString(), mAuth.getUid(), discription.getText().toString(), 0);
+                        post.setTime(System.currentTimeMillis());
                         posts.child(mAuth.getCurrentUser().getUid()).child("post").setValue(post);
                         Toast.makeText(PostUploaderActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                     } else {
