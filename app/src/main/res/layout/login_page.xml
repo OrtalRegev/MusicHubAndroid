@@ -1,48 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/password"
+    <Button
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="58dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Password"
+        android:layout_marginBottom="54dp"
+        android:layout_x="134dp"
+        android:layout_y="275dp"
+        android:text="login"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/loginButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintLeft_toLeftOf="@+id/registerButton"
+        app:layout_constraintRight_toRightOf="@+id/registerButton"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Email"
-        android:visibility="visible"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="130dp"
+        android:layout_x="139dp"
+        android:layout_y="354dp"
         android:text="Register"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,17 +38,38 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="54dp"
-        android:text="login"
+        android:layout_marginBottom="58dp"
+        android:layout_x="3dp"
+        android:layout_y="187dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
-        app:layout_constraintLeft_toLeftOf="@+id/registerButton"
-        app:layout_constraintRight_toRightOf="@+id/registerButton"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
-</android.support.constraint.ConstraintLayout>
+        tools:layout_constraintRight_creator="1"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_x="0dp"
+        android:layout_y="95dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+</AbsoluteLayout>

@@ -7,29 +7,21 @@ import android.media.MediaPlayer;
  */
 
 public class SingeltonSongPlaying {
-    static SingeltonSongPlaying singeltonSongPlaying=null;
+    static SingeltonSongPlaying singeltonSongPlaying = new SingeltonSongPlaying();
     MediaPlayer songPlayer;
 
-    private SingeltonSongPlaying()
-    {
-
-
-    }
+    private SingeltonSongPlaying() {}
 
     public void setSongPlayer(MediaPlayer songPlayer) {
-        if (songPlayer.isPlaying()) {songPlayer.stop();}
-        this.songPlayer = songPlayer;
+        if (this.songPlayer != null && this.songPlayer.isPlaying()) {this.songPlayer.stop();}
+        this.songPlayer= songPlayer;
     }
     public void playSong()
     {
         songPlayer.start();
     }
 
-    static public SingeltonSongPlaying getInstence() {
-        if (singeltonSongPlaying == null)
-        {
-            singeltonSongPlaying = new SingeltonSongPlaying();
-        }
+    public static SingeltonSongPlaying getInstence() {
         return singeltonSongPlaying;
     }
 

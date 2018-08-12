@@ -61,7 +61,7 @@ public class PostListAdpter extends ArrayAdapter<Post>{
         final String artistId = getItem(position).getArtistId();
         String postDescription = getItem(position).getPostDescription();
         int hypes = getItem(position).getPostHypes();
-
+        singeltonSongPlaying= SingeltonSongPlaying.getInstence();
         Post post = new Post(artistId,postId,postDescription,hypes);
 
         final  View result;
@@ -110,8 +110,6 @@ public class PostListAdpter extends ArrayAdapter<Post>{
         holder.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view){
-                singeltonSongPlaying= SingeltonSongPlaying.getInstence();
-
                 final StorageReference song = FirebaseStorage.getInstance().getReference().child("songs").child(artistId);
                 try {
                     songFile = File.createTempFile("songs", null, view.getContext().getCacheDir());

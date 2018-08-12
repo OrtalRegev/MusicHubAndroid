@@ -41,13 +41,18 @@ public class FragmentFeed extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        postList = new ArrayList<>();
         theFeed=(ListView) view.findViewById(R.id.feed);
         artists = FirebaseDatabase.getInstance().getReference("artists");
         artists.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    postList.add(snapshot.child("post").getValue(Post.class));
+                    Post post = snapshot.child("post").getValue(Post.class);
+                    if(post == null){
+                        continue;
+                    }
+                    postList.add(post);
                 }
                 Collections.sort(postList,(new Comparator<Post>() {
                     @Override
