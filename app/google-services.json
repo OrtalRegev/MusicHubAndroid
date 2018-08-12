@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "940079522242",
-    "firebase_url": "https://musichub-5b182.firebaseio.com",
-    "project_id": "musichub-5b182",
-    "storage_bucket": "musichub-5b182.appspot.com"
+    "project_number": "973366143167",
+    "firebase_url": "https://musichubagain.firebaseio.com",
+    "project_id": "musichubagain",
+    "storage_bucket": "musichubagain.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:940079522242:android:3e7c6a8c3b259e0b",
+        "mobilesdk_app_id": "1:973366143167:android:3e7c6a8c3b259e0b",
         "android_client_info": {
           "package_name": "il.ac.colman.cs.musichubandroid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "940079522242-7erd33ofgt0oi6fvmdlaib1ol4u2vkk9.apps.googleusercontent.com",
+          "client_id": "973366143167-s7kl7rfmrnqd1kqq1giiq9m2v4a92tk8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBI90_coIfky87_kT_NTjFzyLXy2HPfnAw"
+          "current_key": "AIzaSyAdsKKAkEK9iz2vkP5vmvhvf5x3JtM8-Mk"
         }
       ],
       "services": {

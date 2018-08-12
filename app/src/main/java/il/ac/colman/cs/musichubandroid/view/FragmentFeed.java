@@ -57,7 +57,7 @@ public class FragmentFeed extends Fragment {
                 Collections.sort(postList,(new Comparator<Post>() {
                     @Override
                     public int compare(Post post, Post t1) {
-                        return (int)(post.getTime() - t1.getTime());
+                        return (int)(t1.getTime() - post.getTime());
                     }
                 }));
                 PostListAdpter adapter = new PostListAdpter(view.getContext(),R.layout.post_adapter,postList);

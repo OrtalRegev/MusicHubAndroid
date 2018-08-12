@@ -76,7 +76,6 @@ public class FragmentYourProfile extends Fragment {
                 ((Activity) getActivity()).overridePendingTransition(0,0);
             }
         });
-        userId = auth.getCurrentUser().getUid();
         StorageReference pic = mStorage.child("pictures").child(userId);
         try {
             picFile = File.createTempFile("images", null, view.getContext().getCacheDir());

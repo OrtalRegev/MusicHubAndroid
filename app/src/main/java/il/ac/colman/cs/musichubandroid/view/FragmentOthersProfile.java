@@ -61,7 +61,6 @@ public class FragmentOthersProfile extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         lookedAt= SingeltonLookedAt.getInstance();
         userId = lookedAt.getUserId();
-        mStorage = FirebaseStorage.getInstance().getReference();
         addPerson= (Button)view.findViewById(R.id.addPerson);
         profilePic=(ImageView)view.findViewById(R.id.OthersProfile);
         mStorage = FirebaseStorage.getInstance().getReference();
