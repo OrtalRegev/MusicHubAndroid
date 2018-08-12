@@ -42,6 +42,7 @@ public class FragmentOthersProfile extends Fragment {
     FirebaseAuth auth;
     String userId;
     SingeltonLookedAt lookedAt;
+    File picFile;
 
     public FragmentOthersProfile()
     {
@@ -59,11 +60,26 @@ public class FragmentOthersProfile extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         lookedAt= SingeltonLookedAt.getInstance();
-        auth = FirebaseAuth.getInstance();
-        userId = auth.getCurrentUser().getUid();
+        userId = lookedAt.getUserId();
         mStorage = FirebaseStorage.getInstance().getReference();
         addPerson= (Button)view.findViewById(R.id.addPerson);
-        profilePic=(ImageView)view.findViewById(R.id.profilePic);
+        profilePic=(ImageView)view.findViewById(R.id.OthersProfile);
+        mStorage = FirebaseStorage.getInstance().getReference();
+
+        StorageReference pic = mStorage.child("pictures").child(userId);
+        try {
+            picFile = File.createTempFile("images", null, view.getContext().getCacheDir());
+        }catch (Exception e){
+
+        }
+        pic.getFile(picFile).addOnCompleteListener(new OnCompleteListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<FileDownloadTask.TaskSnapshot> task) {
+                if(task.isSuccessful()){
+                    profilePic.setImageURI(Uri.fromFile(picFile));
+                }
+            }
+        });
         addPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

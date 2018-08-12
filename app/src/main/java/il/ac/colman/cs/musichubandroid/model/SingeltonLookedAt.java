@@ -6,19 +6,12 @@ package il.ac.colman.cs.musichubandroid.model;
 
 public class SingeltonLookedAt {
 
-    private static SingeltonLookedAt instance=null;
+    private static SingeltonLookedAt instance=new SingeltonLookedAt();
     private  String userId;
 
-    private SingeltonLookedAt()
-    {
-
-    }
+    private SingeltonLookedAt() {}
 
     public static SingeltonLookedAt getInstance(){
-        if (instance==null)
-        {
-            instance = new SingeltonLookedAt();
-        }
         return instance;
     }
 
