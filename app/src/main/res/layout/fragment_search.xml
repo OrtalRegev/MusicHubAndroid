@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_x="-1dp"
+        android:layout_y="33dp"
+        android:ems="10"
+        android:hint="who would you like to find"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="164dp"
+        android:layout_y="269dp"
+        android:text="search" />
+</AbsoluteLayout>

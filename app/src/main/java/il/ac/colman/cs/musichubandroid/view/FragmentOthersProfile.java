@@ -25,6 +25,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 
 import il.ac.colman.cs.musichubandroid.R;
+import il.ac.colman.cs.musichubandroid.model.SingeltonLookedAt;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -32,17 +33,18 @@ import static android.app.Activity.RESULT_OK;
  * Created by regevor on 10/08/2018.
  */
 
-public class FragmentProfile extends Fragment {
-    Button addPost;
+public class FragmentOthersProfile extends Fragment {
     private static final  int PICK_IMAGE=100;
+    Button addPerson;
     Uri imageUri;
     ImageView profilePic;
     StorageReference mStorage;
     FirebaseAuth auth;
     String userId;
+    SingeltonLookedAt lookedAt;
     File picFile;
 
-    public FragmentProfile()
+    public FragmentOthersProfile()
     {
 
     }
@@ -51,32 +53,19 @@ public class FragmentProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_profile,container,false);
+        return inflater.inflate(R.layout.fragment_others_profile,container,false);
     }
 
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-        auth = FirebaseAuth.getInstance();
-        userId = auth.getCurrentUser().getUid();
+        lookedAt= SingeltonLookedAt.getInstance();
+        userId = lookedAt.getUserId();
         mStorage = FirebaseStorage.getInstance().getReference();
-        addPost= (Button)view.findViewById(R.id.addPost);
-        profilePic=(ImageView)view.findViewById(R.id.profilePic);
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
-        addPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        addPerson= (Button)view.findViewById(R.id.addPerson);
+        profilePic=(ImageView)view.findViewById(R.id.OthersProfile);
+        mStorage = FirebaseStorage.getInstance().getReference();
 
-                startActivity(new Intent(getActivity(),PostUploaderActivity.class));
-                ((Activity) getActivity()).overridePendingTransition(0,0);
-            }
-        });
-        userId = auth.getCurrentUser().getUid();
         StorageReference pic = mStorage.child("pictures").child(userId);
         try {
             picFile = File.createTempFile("images", null, view.getContext().getCacheDir());
@@ -91,34 +80,18 @@ public class FragmentProfile extends Fragment {
                 }
             }
         });
+        addPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userId.equals(lookedAt.getUserId()))
+                {
 
-    }
+                }else{
 
-    public void openGallery()
-    {
-        Intent gallery= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery,PICK_IMAGE);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==PICK_IMAGE && resultCode==RESULT_OK)
-        {
-            imageUri=data.getData();
-            StorageReference filepath = mStorage.child("pictures").child(userId);
-            filepath.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if(task.isSuccessful()){
-                        profilePic.setImageURI(imageUri);
-                    }else{
-                        Toast.makeText(getContext(), "Failed to upload please try again", Toast.LENGTH_SHORT).show();
-                    }
                 }
-            });
+            }
+        });
 
 
-        }
     }
 }
