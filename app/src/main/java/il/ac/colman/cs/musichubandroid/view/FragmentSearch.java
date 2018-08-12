@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +31,8 @@ import il.ac.colman.cs.musichubandroid.model.SingeltonLookedAt;
 public class FragmentSearch extends Fragment {
     Button searchButton;
     EditText searchText;
-    FragmentOthersProfile fragment;
+    FragmentOthersProfile otherProfile;
+    FragmentYourProfile yourProfile;
     FirebaseDatabase mDatabase;
     SingeltonLookedAt lookedAt;
     String userIdFound;
@@ -47,7 +49,8 @@ public class FragmentSearch extends Fragment {
 
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
-        fragment =new FragmentOthersProfile();
+        otherProfile = new FragmentOthersProfile();
+        yourProfile = new FragmentYourProfile();
         searchButton=(Button) view.findViewById(R.id.searchButton);
         searchText=(EditText)view.findViewById(R.id.searchEditText);
         mDatabase = FirebaseDatabase.getInstance();
@@ -66,7 +69,8 @@ public class FragmentSearch extends Fragment {
                                  lookedAt.setUserId(userIdFound);
 
                                  FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
-                                 fragmentTransaction.replace(R.id.mainFrame,fragment);
+                                 if(lookedAt.getUserId().equals(FirebaseAuth.getInstance().getUid())){fragmentTransaction.replace(R.id.mainFrame,yourProfile);}
+                                 else{fragmentTransaction.replace(R.id.mainFrame,otherProfile);}
                                  fragmentTransaction.commit();
 
                                  return;
