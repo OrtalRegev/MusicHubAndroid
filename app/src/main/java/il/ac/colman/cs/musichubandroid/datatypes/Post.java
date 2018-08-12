@@ -5,12 +5,26 @@ public class Post {
     String artistId;
     String postDescription;
     int postHypes;
+    long time;
+
+    public Post(){
+
+    }
 
     public Post(String postId, String artistId, String postDescription, int postHypes) {
         this.postId = postId;
         this.artistId = artistId;
         this.postDescription = postDescription;
         this.postHypes = postHypes;
+        time = 0;
+    }
+
+    public Post(String postId, String artistId, String postDescription, int postHypes, long time) {
+        this.postId = postId;
+        this.artistId = artistId;
+        this.postDescription = postDescription;
+        this.postHypes = postHypes;
+        this.time = time;
     }
 
     public String getPostId() {
@@ -43,6 +57,14 @@ public class Post {
 
     public void setPostHypes(int postHypes) {
         this.postHypes = postHypes;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 
     public int addHype(){
